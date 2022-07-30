@@ -1,0 +1,57 @@
+<%- include("template/cabecera","template/style.css", {tituloWeb: 'Página Modificar Paciente'}) %>
+
+<div class="container">
+    <br>
+    <h1>Editar Paciente</h1>
+    <br>
+    <form action="editarPaciente" class="my-2" method="POST">
+    
+        <input 
+            type="text"
+            class="form-control my-2"
+            name="nombre"
+            value="<%= nombre %>"
+        >
+    
+        <input 
+            type="text"
+            class="form-control my-2"
+            name="especie"
+            value="<%= especie %>"
+        >
+
+        <input 
+        type="text"
+        class="form-control my-2"
+        name="raza"
+        value="<%= raza %>"
+    >
+
+ 
+
+    <input 
+    type="text"
+    class="form-control my-2"
+    name="nombreResponsable"
+    value="<%= nombreResponsable %>"
+>
+
+    
+        <button
+            type="submit"
+            class="btn btn-dark btn-block"
+        >
+            Modificar Paciente
+        </button>
+
+        <input
+            type="hidden"
+            name="id"
+            value="<%= id %>"
+        >
+    
+    </form>
+
+  </div>
+
+<%- include("template/footer") %>

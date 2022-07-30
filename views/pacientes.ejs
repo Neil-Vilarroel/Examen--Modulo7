@@ -1,0 +1,93 @@
+
+        <div class="alert alert-warning" role="alert">
+            ¡Ha ingresado exitosamente al sistema!
+          </div>
+          <%- include("template/cabecera", {tituloWeb: 'Página de Inicio Pacientes' }) %>
+          <br>
+        <center><a class="btn btn-primary btn-sm" href="pacientes/crear" role="button" style="font-family: calibri; font-size: larger;">
+            Ingresar nuevo paciente 
+        </a></center>
+    </div>
+    
+    <br>
+    <div class="container">
+            <div class="row">
+            <h3>Listado de Pacientes</h3>
+            <table class="table">
+                <thead>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Especie</th>
+                    <th scope="col">Raza</th>
+                    <!-- <th scope="col">Edad</th> -->
+                    <th scope="col">Nombre Responsable</th>
+                    <th scope="col"></th>
+
+                </thead>
+                <tbody>
+                    <div>
+                        <% if (arrayPacientes.length>0) { %>
+                            <% arrayPacientes.forEach( paciente=> { %>
+                                <tr>
+                                    <th>
+                                        <%= paciente.id %>
+                                    </th>
+                                    <th>
+                                        <%= paciente.nombre %>
+                                    </th>
+                                    <th>
+                                        <%= paciente.especie %>
+                                    </th>
+                                    <th>
+                                        <%= paciente.raza %>
+                                    </th>
+                                    <!-- <th>
+                                        <%= paciente.edad %>
+                                    </th> -->
+                                    <th>
+                                        <%= paciente.nombreResponsable %>
+                                    </th>
+                                    <th>
+                                        <a class="btn btn-warning btn-sm"
+                                            href="pacientes/verPaciente/<%= paciente.id %>" rol="button">
+                                            Modificar ✏
+                                        </a>
+                                        <a class="btn btn-danger btn-sm"
+                                            href="javascript:eliminar('<%= paciente.id %>');" rol="button">
+                                            Eliminar 🗑
+                                        </a>
+                                    </th>
+                                </tr>
+                                <% }) %>
+                                    <% } %>
+                    </div>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+    <script>
+        async function eliminar(paramID) {
+
+            try {
+
+                const data = await fetch(`/pacientes/${paramID}`, {
+                    method: 'delete'
+                });
+
+                window.location.href = '/pacientes';
+
+            } catch (error) {
+                console.log(error);
+            }
+
+        }
+    </script>
+    <br>
+    <br>
+
+
+    <%- include("template/footer") %>
